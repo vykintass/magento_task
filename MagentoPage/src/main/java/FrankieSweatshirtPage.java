@@ -1,3 +1,4 @@
+import org.checkerframework.common.reflection.qual.ForName;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,8 +21,14 @@ public class FrankieSweatshirtPage extends BasePage{
     private WebElement itemQuantity;
     @FindBy(id="product-addtocart-button")
     private WebElement addToCart;
-    @FindBy(css=".action.showcart > .counter.qty")
+    @FindBy(css=".counter.qty > .counter-number")
     private WebElement getCartQty;
+    @FindBy(css="div[role='alert'] > div > div")
+    private WebElement getConfirmationText;
+    @FindBy(css= ".minicart-wrapper > .action.showcart")
+    private WebElement shoppingCart;
+    @FindBy(css=".action.viewcart > span")
+    private WebElement viewShoppingCart;
 
     public String getItemName(){
         return getItemName.getText();
@@ -61,5 +68,14 @@ public class FrankieSweatshirtPage extends BasePage{
             // If there is a problem parsing the text, also return 0
             return 0;
         }
+    }
+    public String getConfirmationText(){
+       return getConfirmationText.getText();
+    }
+    public void clickShoppingCart(){
+        shoppingCart.click();
+    }
+    public void clickViewShoppingCart(){
+        viewShoppingCart.click();
     }
 }

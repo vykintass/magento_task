@@ -28,8 +28,11 @@ public class HoodiesAndSweatshirtsPage extends BasePage {
     public int getProductsCount() {
         return getProductsCount.size();
     }
-    public void clickselectedOneItem(){
+    public void clickSelectedOneItem(){
         selectOneItem.click();
+    }
+    public String getItemName(){
+        return selectOneItem.getText();
     }
 
     public int getPerPageNumber() {
