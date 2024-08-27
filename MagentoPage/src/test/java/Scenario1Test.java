@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -54,7 +56,33 @@ public class Scenario1Test extends BaseTest{
         Assertions.assertEquals(itemNameInTheCatalogue, itemNameInTheCart, "The name of the item was changed");
         //1.7.
         shoppingCartPage.clickProceedToCheckoutButton();
-        
+        //Check if you navigated to the right page and if the page has the correct name.
+        Assertions.assertEquals("Shipping Address",checkoutPage.getPageName(), "The page name is not correct");
+        //1.8.
+        // Wait until the email field is visible
+        wait.until(ExpectedConditions.visibilityOf(checkoutPage.getEmailField()));
+        //Input data
+        checkoutPage.inputEmailField();
+        checkoutPage.inputFirstnameField("TestFirst");
+        checkoutPage.inputLastnameField("TestSecond");
+        checkoutPage.inputAddressField("TestAddress");
+        checkoutPage.inputCityField("TestCity");
+        checkoutPage.inputProvinceField("TestProvince");
+        checkoutPage.inputPostalCodeField("12345");
+        checkoutPage.inputPhoneNumberField("12345678");
+        checkoutPage.clickSelectShippingMethod();
+        //Proceed to the next page
+        checkoutPage.clickNextButton();
+        //Check if page title is correct
+        Assertions.assertEquals("Payment Method", checkoutPage.getPaymentPageText(), "The page name is not correct");
+
+
+        // Click the "Place Order" button
+        WebElement placeOrderButton = wait.until(ExpectedConditions.visibilityOf(checkoutPage.getPlaceOrderButton()));
+        checkoutPage.clickPlaceOrderButton();
+        //Check the confirmation message
+        Assertions.assertTrue(checkoutPage.checkConfirmationText(), "Message is not displayed");
+        Assertions.assertEquals("Thank for your purchase", checkoutPage.getConfirmationText(), "Incorrect confirmation message");
     }
 
 }

@@ -13,6 +13,7 @@ public class BaseTest {
     protected HoodiesAndSweatshirtsPage hoodiesAndSweatshirtsPage;
     protected FrankieSweatshirtPage frankieSweatshirtPage;
     protected ShoppingCartPage shoppingCartPage;
+    protected CheckoutPage checkoutPage;
     @BeforeEach
     void setup() {
         ChromeOptions options = new ChromeOptions();
@@ -24,7 +25,7 @@ public class BaseTest {
         hoodiesAndSweatshirtsPage = new HoodiesAndSweatshirtsPage(driver);
         frankieSweatshirtPage = new FrankieSweatshirtPage(driver);
         shoppingCartPage = new ShoppingCartPage(driver);
-
+        checkoutPage = new CheckoutPage(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("https://magento.softwaretestingboard.com/");
         

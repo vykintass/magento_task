@@ -11,7 +11,7 @@ public class ShoppingCartPage extends BasePage{
     }
     @FindBy(css = ".base")
     private WebElement getPageName;
-    @FindBy(tagName= ".checkout.checkout-methods-items.items.methods  button[title='Proceed to Checkout']")
+    @FindBy(css= ".checkout.checkout-methods-items.items.methods  button[title='Proceed to Checkout']")
     private WebElement proceedToCheckoutButton;
     @FindBy(css  = " .col.item  strong > a")
     private WebElement getItemName;
