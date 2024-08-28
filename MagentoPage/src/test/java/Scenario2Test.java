@@ -6,7 +6,7 @@ import java.time.Duration;
 
 public class Scenario2Test extends BaseTest{
     @Test
-    public void scenarioTwoTest(){
+    public void scenarioTwoTest() throws InterruptedException {
         //2.1.
         homePage.clickWomenCategoryButton();
         womenPage.clickPantsButton();
@@ -36,7 +36,7 @@ public class Scenario2Test extends BaseTest{
             Integer firstQty = womenKarmenYogaPantsPage.getCartItemQuantity();
             return !firstQty.equals(initialQty);  // Wait until the quantity changes
         });
-        Integer firstQty = womenKarmenYogaPantsPage.getCartItemQuantity();
+        int firstQty = womenKarmenYogaPantsPage.getCartItemQuantity();
         //Check if cart quantity is increased
         Assertions.assertTrue(firstQty>initialQty,"The number of items in the cart did not increase");
         //Add second item
@@ -47,11 +47,32 @@ public class Scenario2Test extends BaseTest{
             Integer secondQty = womenKarmenYogaPantsPage.getCartItemQuantity();
             return !secondQty.equals(firstQty);  // Wait until the quantity changes
         });
-        Integer secondQty = womenKarmenYogaPantsPage.getCartItemQuantity();
+       int secondQty = womenKarmenYogaPantsPage.getCartItemQuantity();
         //Check if cart quantity is increased
         Assertions.assertTrue(secondQty>firstQty,"The number of items in the cart did not increase");
         //2.5.
-        
+        //Navigate to the cart
+        womenKarmenYogaPantsPage.clickShoppingCart();
+        //Delete items from the shopping cart
+        int initialCount = womenKarmenYogaPantsPage.getProductsSize();
+        womenKarmenYogaPantsPage.clickItemOneDeleteButton();
+        womenKarmenYogaPantsPage.clickConfirmDeleteButton();
+        //Wait for system to delete one item
+        wait.until(driver -> womenKarmenYogaPantsPage.getProductsSize() < initialCount);
+        int updatedCount = womenKarmenYogaPantsPage.getProductsSize();
+        //Check message after deleting items
+        Assertions.assertTrue(initialCount>updatedCount, "Count did not change");
+        //2.6.
+        womenKarmenYogaPantsPage.clickProceedToCheckout();
+        //2.7.
+        //Go back to the previous page
+        driver.navigate().back();
+        //Check if this is the right page with recommended items
+        Assertions.assertTrue(womenKarmenYogaPantsPage.getNameOfTheSection().contains("you might like"), "Incorrect page");
+        womenKarmenYogaPantsPage.clickIdaWorkoutPants();
+        //Check if it is the right page
+        Assertions
+                
     }
 
 
