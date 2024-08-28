@@ -10,22 +10,30 @@ public class BaseTest {
     protected WebDriver driver;
     protected  HomePage homePage;
     protected MenPage menPage;
-    protected HoodiesAndSweatshirtsPage hoodiesAndSweatshirtsPage;
-    protected FrankieSweatshirtPage frankieSweatshirtPage;
+    protected MenHoodiesAndSweatshirtsPage hoodiesAndSweatshirtsPage;
+    protected MenFrankieSweatshirtPage frankieSweatshirtPage;
     protected ShoppingCartPage shoppingCartPage;
     protected CheckoutPage checkoutPage;
+    protected WomenPage womenPage;
+    protected WomenPantsPage womenPantsPage;
+    protected WomenKarmenYogaPantsPage womenKarmenYogaPantsPage;
+
     @BeforeEach
     void setup() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-search-engine-choice-screen");
         driver = new ChromeDriver(options);
-       // driver.manage().window().maximize();
+        driver.manage().window().maximize();
         homePage = new HomePage(driver);
         menPage = new MenPage(driver);
-        hoodiesAndSweatshirtsPage = new HoodiesAndSweatshirtsPage(driver);
-        frankieSweatshirtPage = new FrankieSweatshirtPage(driver);
+        hoodiesAndSweatshirtsPage = new MenHoodiesAndSweatshirtsPage(driver);
+        frankieSweatshirtPage = new MenFrankieSweatshirtPage(driver);
         shoppingCartPage = new ShoppingCartPage(driver);
         checkoutPage = new CheckoutPage(driver);
+        womenPage = new WomenPage(driver);
+        womenPantsPage = new WomenPantsPage(driver);
+        womenKarmenYogaPantsPage = new WomenKarmenYogaPantsPage(driver);
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("https://magento.softwaretestingboard.com/");
         

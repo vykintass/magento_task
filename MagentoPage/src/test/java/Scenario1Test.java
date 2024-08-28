@@ -75,8 +75,6 @@ public class Scenario1Test extends BaseTest{
         checkoutPage.clickNextButton();
         //Check if page title is correct
         Assertions.assertEquals("Payment Method", checkoutPage.getPaymentPageText(), "The page name is not correct");
-
-
         // Click the "Place Order" button
         checkoutPage.clickPlaceOrderButton();
         //Check the confirmation message

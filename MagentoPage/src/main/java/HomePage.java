@@ -9,8 +9,13 @@ public class HomePage extends BasePage{
     }
     @FindBy(linkText = "Men")
     private WebElement menCategoryButton;
+    @FindBy(linkText = "Women")
+    private WebElement womenCategoryButton;
 
     public void clickMenCategoryButton(){
         menCategoryButton.click();
+    }
+    public void clickWomenCategoryButton(){
+        womenCategoryButton.click();
     }
 }

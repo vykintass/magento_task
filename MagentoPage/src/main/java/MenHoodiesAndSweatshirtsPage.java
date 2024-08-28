@@ -1,14 +1,12 @@
-import jdk.dynalink.linker.LinkerServices;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class HoodiesAndSweatshirtsPage extends BasePage {
+public class MenHoodiesAndSweatshirtsPage extends BasePage {
 
-    public HoodiesAndSweatshirtsPage(WebDriver driver) {
+    public MenHoodiesAndSweatshirtsPage(WebDriver driver) {
         super(driver);
     }
 

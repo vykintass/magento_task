@@ -1,12 +1,11 @@
-import org.checkerframework.common.reflection.qual.ForName;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class FrankieSweatshirtPage extends BasePage{
+public class MenFrankieSweatshirtPage extends BasePage{
 
-    public FrankieSweatshirtPage(WebDriver driver) {
+    public MenFrankieSweatshirtPage(WebDriver driver) {
         super(driver);
     }
     @FindBy(css = ".base")
