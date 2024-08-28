@@ -78,7 +78,6 @@ public class Scenario1Test extends BaseTest{
 
 
         // Click the "Place Order" button
-        WebElement placeOrderButton = wait.until(ExpectedConditions.visibilityOf(checkoutPage.getPlaceOrderButton()));
         checkoutPage.clickPlaceOrderButton();
         //Check the confirmation message
         Assertions.assertTrue(checkoutPage.checkConfirmationText(), "Message is not displayed");

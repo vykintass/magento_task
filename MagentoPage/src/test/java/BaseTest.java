@@ -19,7 +19,7 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-search-engine-choice-screen");
         driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
+       // driver.manage().window().maximize();
         homePage = new HomePage(driver);
         menPage = new MenPage(driver);
         hoodiesAndSweatshirtsPage = new HoodiesAndSweatshirtsPage(driver);

@@ -1,7 +1,10 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+import java.util.List;
 import java.util.Random;
 
 public class CheckoutPage extends BasePage {
@@ -35,10 +38,13 @@ public class CheckoutPage extends BasePage {
     private WebElement nextButton;
     @FindBy(css="div#checkout-payment-method-load .step-title")
     private WebElement getPaymentPageText;
-    @FindBy(css="button[title='Place Order']")
+//    @FindBy(css="button[title='Place Order']")
+//    private WebElement placeOrderButton;
+    @FindBy(xpath = "//button[@title='Place Order']")
     private WebElement placeOrderButton;
     @FindBy(css=".base")
     private WebElement confirmationText;
+
 
     public String getPageName() {
         return getShippingPageName.getText();
@@ -97,16 +103,37 @@ public class CheckoutPage extends BasePage {
     public String getPaymentPageText(){
         return getPaymentPageText.getText();
     }
-    public void clickPlaceOrderButton(){
+    public void clickPlaceOrderButton() {
+        WebElement paymentMethod = driver.findElement(By.cssSelector("li.checkout-payment-method"));
+        paymentMethod.click();  // or interact with it as needed
+        WebElement placeOrderButton = driver.findElement(By.xpath("//button[@title='Place Order']"));
         placeOrderButton.click();
+//        WebElement placeOrderButton = driver.findElement(By.xpath("//button[@title='Place Order']"));
+//        Point point = placeOrderButton.getLocation();
+//        List<WebElement> elementsAtPoint = driver.findElements(By.xpath("//*[contains(@style,'display') and not(contains(@style, 'none'))]"));
+//
+//        for (WebElement element : elementsAtPoint) {
+//            Point elementLocation = element.getLocation();
+//            Dimension elementSize = element.getSize();
+//            // Check if the element covers the point where the button is located
+//            if (point.getX() >= elementLocation.getX() && point.getX() <= elementLocation.getX() + elementSize.getWidth() &&
+//                    point.getY() >= elementLocation.getY() && point.getY() <= elementLocation.getY() + elementSize.getHeight()) {
+//                System.out.println("Element potentially covering the button: " + element.getTagName() + " " + element.getAttribute("class"));
+//            }
+//        }
     }
-    public WebElement getPlaceOrderButton() {
-        return placeOrderButton;
-    }
+//    public WebElement getPlaceOrderButton() {
+//        return placeOrderButton;
+//    }
     public boolean checkConfirmationText(){
+
         return confirmationText.isDisplayed();
     }
     public String getConfirmationText(){
-        return confirmationText.getText();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));  //
+        By confirmationTextLocator = By.cssSelector(".base");
+        WebElement confirmationTextElement = wait.until(ExpectedConditions.visibilityOfElementLocated(confirmationTextLocator));
+        return confirmationTextElement.getText();
     }
+
 }
