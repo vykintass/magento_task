@@ -83,7 +83,7 @@ public class Scenario2Test extends BaseTest{
         Assertions.assertTrue(womenIdaWorkoutPantsPage.getItemName().contains("Ida Workout"), "Incorrect item name");
         //Select item properties
 
-        
+
         womenIdaWorkoutPantsPage.clickSize29();
         womenIdaWorkoutPantsPage.clickColourPink();
         //Get number of the items in the cart before adding new item
