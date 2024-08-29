@@ -7,7 +7,7 @@ import java.time.Duration;
 
 public class Scenario2Test extends BaseTest{
     @Test
-    public void scenarioTwoTest() throws InterruptedException {
+    public void scenarioTwoTest() {
         //2.1.
         //Navigate to the category page
         homePage.clickWomenCategoryButton();
@@ -32,6 +32,7 @@ public class Scenario2Test extends BaseTest{
         //2.4.
         //Check number of the items in the cart before adding to the cart
         Integer initialQty = womenKarmenYogaPantsPage.getCartItemQuantity();
+        //Add one more item
         womenKarmenYogaPantsPage.clickSelectColorGray();
         womenKarmenYogaPantsPage.clickAddToCartButton();
         //Wait until cart quantity is updated
@@ -81,6 +82,8 @@ public class Scenario2Test extends BaseTest{
         //Check if it is the right page
         Assertions.assertTrue(womenIdaWorkoutPantsPage.getItemName().contains("Ida Workout"), "Incorrect item name");
         //Select item properties
+
+        
         womenIdaWorkoutPantsPage.clickSize29();
         womenIdaWorkoutPantsPage.clickColourPink();
         //Get number of the items in the cart before adding new item

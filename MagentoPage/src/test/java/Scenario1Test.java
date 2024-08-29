@@ -9,7 +9,7 @@ import java.time.Duration;
 public class Scenario1Test extends BaseTest{
 
     @Test
-    public void scenarioOneTest() throws InterruptedException {
+    public void scenarioOneTest(){
         //1.1.
         //Navigate to the category page
         homePage.clickMenCategoryButton();
