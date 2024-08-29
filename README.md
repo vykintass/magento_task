@@ -17,4 +17,4 @@ Before setting up and running the tests, ensure you have the following installed
    Open cloned files with InteliJ IDEA
 ## Execution
 There are two tests for each scenario. The first scenario tests adding a men's sweatshirt to the cart and placing the order. The second scenario tests adding women's pants, deleting them, and then placing the order.
-To execute the tests, navigate to the tests by clicking: main -> test  -> java.  Right click on the 'java' and select "Run 'All tests'" 
+To execute the tests, navigate to the tests by clicking: MagentoPage -> src -> test  -> java.  Right click on the 'java' and select "Run 'All tests'" 
