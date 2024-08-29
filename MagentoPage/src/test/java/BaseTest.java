@@ -17,7 +17,7 @@ public class BaseTest {
     protected WomenPage womenPage;
     protected WomenPantsPage womenPantsPage;
     protected WomenKarmenYogaPantsPage womenKarmenYogaPantsPage;
-
+    protected WomenIdaWorkoutPantsPage womenIdaWorkoutPantsPage;
     @BeforeEach
     void setup() {
         ChromeOptions options = new ChromeOptions();
@@ -33,6 +33,7 @@ public class BaseTest {
         womenPage = new WomenPage(driver);
         womenPantsPage = new WomenPantsPage(driver);
         womenKarmenYogaPantsPage = new WomenKarmenYogaPantsPage(driver);
+        womenIdaWorkoutPantsPage = new WomenIdaWorkoutPantsPage(driver);
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("https://magento.softwaretestingboard.com/");
@@ -40,6 +41,6 @@ public class BaseTest {
     }
     @AfterEach
     void tearDown(){
-    //    driver.quit();
+        driver.quit();
     }
 }

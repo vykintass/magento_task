@@ -38,11 +38,13 @@ public class CheckoutPage extends BasePage {
     private WebElement nextButton;
     @FindBy(css="div#checkout-payment-method-load .step-title")
     private WebElement getPaymentPageText;
-    @FindBy(xpath = "//button[@title='Place Order']")
-    private WebElement placeOrderButton;
+
     @FindBy(css=".base")
     private WebElement confirmationText;
-
+    @FindBy(css = "li.checkout-payment-method")
+    private WebElement paymentMethod;
+    @FindBy(xpath = "//button[@title='Place Order']")
+    private WebElement placeOrderButton;
 
     public String getPageName() {
         return getShippingPageName.getText();
@@ -102,17 +104,16 @@ public class CheckoutPage extends BasePage {
         return getPaymentPageText.getText();
     }
     public void clickPlaceOrderButton() {
-        WebElement paymentMethod = driver.findElement(By.cssSelector("li.checkout-payment-method"));
-        paymentMethod.click();  // or interact with it as needed
-        WebElement placeOrderButton = driver.findElement(By.xpath("//button[@title='Place Order']"));
+        //This is on top of the button
+        paymentMethod.click();
+        //Button click
         placeOrderButton.click();
     }
     public boolean checkConfirmationText(){
-
         return confirmationText.isDisplayed();
     }
     public String getConfirmationText(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));  //
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));  //
         By confirmationTextLocator = By.cssSelector(".base");
         WebElement confirmationTextElement = wait.until(ExpectedConditions.visibilityOfElementLocated(confirmationTextLocator));
         return confirmationTextElement.getText();

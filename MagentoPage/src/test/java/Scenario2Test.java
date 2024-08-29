@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -71,8 +72,51 @@ public class Scenario2Test extends BaseTest{
         Assertions.assertTrue(womenKarmenYogaPantsPage.getNameOfTheSection().contains("you might like"), "Incorrect page");
         womenKarmenYogaPantsPage.clickIdaWorkoutPants();
         //Check if it is the right page
-        Assertions
-                
+        Assertions.assertTrue(womenIdaWorkoutPantsPage.getItemName().contains("Ida Workout"), "Incorrent item name");
+        //Select item properties
+        womenIdaWorkoutPantsPage.clickSize29();
+        womenIdaWorkoutPantsPage.clickColourPink();
+
+        int quantityBeforeAddingNewItem = womenIdaWorkoutPantsPage.getCartItemQuantity();
+        //Check if number in the cart did not change going through the pages
+        Assertions.assertEquals(updatedCount, quantityBeforeAddingNewItem, "Quantity have changed going from one page to another");
+        //Add item to the cart
+        womenIdaWorkoutPantsPage.clickAddToCart();
+        //Wait until number is updated
+        wait.until(driver -> {
+            Integer quantityAfterAddingNewItem = womenIdaWorkoutPantsPage.getCartItemQuantity();
+            return !quantityAfterAddingNewItem.equals(quantityBeforeAddingNewItem);  // Wait until the quantity changes
+        });
+        int quantityAfterAddingNewItem = womenIdaWorkoutPantsPage.getCartItemQuantity();
+        //Check if the number increased
+        Assertions.assertTrue(quantityAfterAddingNewItem>quantityBeforeAddingNewItem, "Quantity did not increase");
+        //2.8.
+        //Navigate to the checkout
+        womenIdaWorkoutPantsPage.clickShoppingCart();
+        womenIdaWorkoutPantsPage.clickProceedToCheckoutButton();
+        //Check if you navigated to the right page and if the page has the correct name.
+        Assertions.assertEquals("Shipping Address",checkoutPage.getPageName(), "The page name is not correct");
+        // Wait until the email field is visible
+        wait.until(ExpectedConditions.visibilityOf(checkoutPage.getEmailField()));
+        //Input data
+        checkoutPage.inputEmailField();
+        checkoutPage.inputFirstnameField("TestFirst");
+        checkoutPage.inputLastnameField("TestSecond");
+        checkoutPage.inputAddressField("TestAddress");
+        checkoutPage.inputCityField("TestCity");
+        checkoutPage.inputProvinceField("TestProvince");
+        checkoutPage.inputPostalCodeField("12345");
+        checkoutPage.inputPhoneNumberField("12345678");
+        checkoutPage.clickSelectShippingMethod();
+        //Proceed to the next page
+        checkoutPage.clickNextButton();
+        //Check if page title is correct
+        Assertions.assertEquals("Payment Method", checkoutPage.getPaymentPageText(), "The page name is not correct");
+        // Click the "Place Order" button
+        checkoutPage.clickPlaceOrderButton();
+        //Check the confirmation message
+        Assertions.assertTrue(checkoutPage.checkConfirmationText(), "Message is not displayed");
+
     }
 
 

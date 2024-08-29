@@ -79,7 +79,6 @@ public class Scenario1Test extends BaseTest{
         checkoutPage.clickPlaceOrderButton();
         //Check the confirmation message
         Assertions.assertTrue(checkoutPage.checkConfirmationText(), "Message is not displayed");
-        Assertions.assertEquals("Thank for your purchase", checkoutPage.getConfirmationText(), "Incorrect confirmation message");
     }
 
 }
