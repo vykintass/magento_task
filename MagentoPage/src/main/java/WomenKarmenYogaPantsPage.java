@@ -21,7 +21,7 @@ public class WomenKarmenYogaPantsPage extends BasePage {
     @FindBy(css = ".color.swatch-attribute > div[role='listbox'] > div:nth-of-type(2)")
     private WebElement selectColorGray;
     @FindBy(css = ".color.swatch-attribute > div[role='listbox'] > div:nth-of-type(1)")
-    private WebElement selectColorBlack;
+    private WebElement selectColourBlack;
     @FindBy(id = "product-addtocart-button")
     private WebElement addToCartButton;
     @FindBy(css = "div[role='alert'] > div > div")
@@ -30,8 +30,6 @@ public class WomenKarmenYogaPantsPage extends BasePage {
     private WebElement getCartQty;
     @FindBy(css = ".minicart-wrapper > .action.showcart")
     private WebElement shoppingCart;
-    @FindBy(css=".action.viewcart > span")
-    private WebElement viewShoppingCart;
     @FindBy(css = "li:nth-of-type(1) > .product a[title='Remove item']")
     private WebElement itemOneDeleteButton;
     @FindBy(xpath = "//*[text()='\" + text + \"']\")")
@@ -40,17 +38,16 @@ public class WomenKarmenYogaPantsPage extends BasePage {
     private List<WebElement> allProducts;
     @FindBy(css = "button#top-cart-btn-checkout")
     private WebElement proceedToCheckout;
-
-    @FindBy(css="strong#block-upsell-heading")
+    @FindBy(css = "strong#block-upsell-heading")
     private WebElement getNameOfTheSection;
-
-    @FindBy(css=".items.list.product-items.products > li:nth-of-type(2)")
+    @FindBy(css = ".items.list.product-items.products > li:nth-of-type(2)")
     private WebElement idaWorkoutPants;
+
     public void clickSelectSize28() {
         selectSize28.click();
     }
 
-    public void clickSelectColorWhite() {
+    public void clickSelectColourWhite() {
         selectColorWhite.click();
     }
 
@@ -58,8 +55,8 @@ public class WomenKarmenYogaPantsPage extends BasePage {
         selectColorGray.click();
     }
 
-    public void clickSelectColorBlack() {
-        selectColorBlack.click();
+    public void clickSelectColourBlack() {
+        selectColourBlack.click();
     }
 
     public void clickAddToCartButton() {
@@ -103,19 +100,19 @@ public class WomenKarmenYogaPantsPage extends BasePage {
         okButton.click();
     }
 
-    public List<WebElement> getAllProducts(){
-        return allProducts;
-    }
-    public int getProductsSize(){
+    public int getProductsSize() {
         return allProducts.size();
     }
-    public void clickProceedToCheckout(){
+
+    public void clickProceedToCheckout() {
         proceedToCheckout.click();
     }
-    public String getNameOfTheSection(){
+
+    public String getNameOfTheSection() {
         return getNameOfTheSection.getText();
     }
-    public void clickIdaWorkoutPants(){
+
+    public void clickIdaWorkoutPants() {
         idaWorkoutPants.click();
     }
 }

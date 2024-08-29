@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,8 +11,9 @@ public class Scenario1Test extends BaseTest{
     @Test
     public void scenarioOneTest() throws InterruptedException {
         //1.1.
+        //Navigate to the category page
         homePage.clickMenCategoryButton();
-        menPage.clickhoodiesAndSweathirtsButton();
+        menPage.clickHoodiesAndSweatshirtsButton();
         //Check if section name is as expected
         Assertions.assertEquals("Hoodies & Sweatshirts", hoodiesAndSweatshirtsPage.getSectionName(),"Section name is incorrect");
         //1.2.
@@ -41,6 +41,7 @@ public class Scenario1Test extends BaseTest{
             Integer updatedQty = frankieSweatshirtPage.getCartItemQuantity();
             return !updatedQty.equals(initialQty);  // Wait until the quantity changes
         });
+        //Check updated quantity
         Integer updatedQty = frankieSweatshirtPage.getCartItemQuantity();
         //Check if confirmation text is displayed
         Assertions.assertTrue(frankieSweatshirtPage.getConfirmationText().contains("to your shopping cart"),"Incorrect confirmation message");
@@ -62,6 +63,7 @@ public class Scenario1Test extends BaseTest{
         // Wait until the email field is visible
         wait.until(ExpectedConditions.visibilityOf(checkoutPage.getEmailField()));
         //Input data
+        //Random generated unique email
         checkoutPage.inputEmailField();
         checkoutPage.inputFirstnameField("TestFirst");
         checkoutPage.inputLastnameField("TestSecond");

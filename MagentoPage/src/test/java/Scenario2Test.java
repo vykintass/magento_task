@@ -9,11 +9,13 @@ public class Scenario2Test extends BaseTest{
     @Test
     public void scenarioTwoTest() throws InterruptedException {
         //2.1.
+        //Navigate to the category page
         homePage.clickWomenCategoryButton();
         womenPage.clickPantsButton();
         //Check the name of the page
         Assertions.assertEquals("Pants", womenPantsPage.getPageName(), "The page name is not correct");
         //2.2.
+        //Filter page by price
         womenPantsPage.clickPriceList();
         womenPantsPage.clickLowestPriceRange();
         //Check filter values
@@ -21,13 +23,14 @@ public class Scenario2Test extends BaseTest{
         //2.3.
         //Select cheapest item from the list
         womenPantsPage.selectCheapestItemAndAddToCart();
-        //Choose color, size
+        //Choose colour, size
         womenKarmenYogaPantsPage.clickSelectSize28();
-        womenKarmenYogaPantsPage.clickSelectColorWhite();
+        womenKarmenYogaPantsPage.clickSelectColourWhite();
         womenKarmenYogaPantsPage.clickAddToCartButton();
         //Check if confirmation message was displayed
         Assertions.assertTrue(womenKarmenYogaPantsPage.getConfirmationText().contains("to your shopping cart"));
         //2.4.
+        //Check number of the items in the cart before adding to the cart
         Integer initialQty = womenKarmenYogaPantsPage.getCartItemQuantity();
         womenKarmenYogaPantsPage.clickSelectColorGray();
         womenKarmenYogaPantsPage.clickAddToCartButton();
@@ -37,32 +40,36 @@ public class Scenario2Test extends BaseTest{
             Integer firstQty = womenKarmenYogaPantsPage.getCartItemQuantity();
             return !firstQty.equals(initialQty);  // Wait until the quantity changes
         });
+        //Check number of the items in the cart after adding first item to the cart
         int firstQty = womenKarmenYogaPantsPage.getCartItemQuantity();
-        //Check if cart quantity is increased
+        //Check if the cart quantity has increased
         Assertions.assertTrue(firstQty>initialQty,"The number of items in the cart did not increase");
         //Add second item
-        womenKarmenYogaPantsPage.clickSelectColorBlack();
+        womenKarmenYogaPantsPage.clickSelectColourBlack();
         womenKarmenYogaPantsPage.clickAddToCartButton();
         //Wait until cart quantity is updated
         wait.until(driver -> {
             Integer secondQty = womenKarmenYogaPantsPage.getCartItemQuantity();
             return !secondQty.equals(firstQty);  // Wait until the quantity changes
         });
+        //Check number of the items in the cart after adding second item to the cart
        int secondQty = womenKarmenYogaPantsPage.getCartItemQuantity();
-        //Check if cart quantity is increased
+        //Check if the cart quantity has increased
         Assertions.assertTrue(secondQty>firstQty,"The number of items in the cart did not increase");
         //2.5.
         //Navigate to the cart
         womenKarmenYogaPantsPage.clickShoppingCart();
         //Delete items from the shopping cart
+        //Get number of the items before deleting
         int initialCount = womenKarmenYogaPantsPage.getProductsSize();
         womenKarmenYogaPantsPage.clickItemOneDeleteButton();
         womenKarmenYogaPantsPage.clickConfirmDeleteButton();
         //Wait for system to delete one item
         wait.until(driver -> womenKarmenYogaPantsPage.getProductsSize() < initialCount);
+        //Get number of the items after deleting
         int updatedCount = womenKarmenYogaPantsPage.getProductsSize();
         //Check message after deleting items
-        Assertions.assertTrue(initialCount>updatedCount, "Count did not change");
+        Assertions.assertTrue(initialCount>updatedCount, "The count did not change");
         //2.6.
         womenKarmenYogaPantsPage.clickProceedToCheckout();
         //2.7.
@@ -72,11 +79,11 @@ public class Scenario2Test extends BaseTest{
         Assertions.assertTrue(womenKarmenYogaPantsPage.getNameOfTheSection().contains("you might like"), "Incorrect page");
         womenKarmenYogaPantsPage.clickIdaWorkoutPants();
         //Check if it is the right page
-        Assertions.assertTrue(womenIdaWorkoutPantsPage.getItemName().contains("Ida Workout"), "Incorrent item name");
+        Assertions.assertTrue(womenIdaWorkoutPantsPage.getItemName().contains("Ida Workout"), "Incorrect item name");
         //Select item properties
         womenIdaWorkoutPantsPage.clickSize29();
         womenIdaWorkoutPantsPage.clickColourPink();
-
+        //Get number of the items in the cart before adding new item
         int quantityBeforeAddingNewItem = womenIdaWorkoutPantsPage.getCartItemQuantity();
         //Check if number in the cart did not change going through the pages
         Assertions.assertEquals(updatedCount, quantityBeforeAddingNewItem, "Quantity have changed going from one page to another");
@@ -87,6 +94,7 @@ public class Scenario2Test extends BaseTest{
             Integer quantityAfterAddingNewItem = womenIdaWorkoutPantsPage.getCartItemQuantity();
             return !quantityAfterAddingNewItem.equals(quantityBeforeAddingNewItem);  // Wait until the quantity changes
         });
+        //Get number of the items in the cart after adding new item
         int quantityAfterAddingNewItem = womenIdaWorkoutPantsPage.getCartItemQuantity();
         //Check if the number increased
         Assertions.assertTrue(quantityAfterAddingNewItem>quantityBeforeAddingNewItem, "Quantity did not increase");
@@ -99,6 +107,7 @@ public class Scenario2Test extends BaseTest{
         // Wait until the email field is visible
         wait.until(ExpectedConditions.visibilityOf(checkoutPage.getEmailField()));
         //Input data
+        //Create unique email
         checkoutPage.inputEmailField();
         checkoutPage.inputFirstnameField("TestFirst");
         checkoutPage.inputLastnameField("TestSecond");

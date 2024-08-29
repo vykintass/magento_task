@@ -34,7 +34,6 @@ public class BaseTest {
         womenPantsPage = new WomenPantsPage(driver);
         womenKarmenYogaPantsPage = new WomenKarmenYogaPantsPage(driver);
         womenIdaWorkoutPantsPage = new WomenIdaWorkoutPantsPage(driver);
-
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("https://magento.softwaretestingboard.com/");
         

@@ -32,14 +32,13 @@ public class CheckoutPage extends BasePage {
     private WebElement provinceField;
     @FindBy(css = "select#BTJ0IYA")
     private WebElement selectCountryDropDownList;
-    @FindBy(css="tr:nth-of-type(2) > td:nth-of-type(1)")
+    @FindBy(css = "tr:nth-of-type(2) > td:nth-of-type(1)")
     private WebElement selectShippingMethod;
-    @FindBy(css= ".continue")
+    @FindBy(css = ".continue")
     private WebElement nextButton;
-    @FindBy(css="div#checkout-payment-method-load .step-title")
+    @FindBy(css = "div#checkout-payment-method-load .step-title")
     private WebElement getPaymentPageText;
-
-    @FindBy(css=".base")
+    @FindBy(css = ".base")
     private WebElement confirmationText;
     @FindBy(css = "li.checkout-payment-method")
     private WebElement paymentMethod;
@@ -49,7 +48,6 @@ public class CheckoutPage extends BasePage {
     public String getPageName() {
         return getShippingPageName.getText();
     }
-
     public static String generateEmail() {
 
         Random random = new Random();
@@ -62,6 +60,7 @@ public class CheckoutPage extends BasePage {
         String randomEmail = generateEmail();
         emailField.sendKeys(randomEmail);
     }
+
     public WebElement getEmailField() {
         return emailField;
     }
@@ -94,29 +93,29 @@ public class CheckoutPage extends BasePage {
         Scroller.scrollToElement(driver, provinceField);
         provinceField.sendKeys(province);
     }
-    public void clickSelectShippingMethod(){
+
+    public void clickSelectShippingMethod() {
         selectShippingMethod.click();
     }
-    public void clickNextButton(){
+
+    public void clickNextButton() {
         nextButton.click();
     }
-    public String getPaymentPageText(){
+
+    public String getPaymentPageText() {
         return getPaymentPageText.getText();
     }
+
     public void clickPlaceOrderButton() {
         //This is on top of the button
         paymentMethod.click();
         //Button click
         placeOrderButton.click();
     }
-    public boolean checkConfirmationText(){
+
+    public boolean checkConfirmationText() {
         return confirmationText.isDisplayed();
     }
-    public String getConfirmationText(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));  //
-        By confirmationTextLocator = By.cssSelector(".base");
-        WebElement confirmationTextElement = wait.until(ExpectedConditions.visibilityOfElementLocated(confirmationTextLocator));
-        return confirmationTextElement.getText();
-    }
+
 
 }

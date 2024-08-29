@@ -24,8 +24,7 @@ public class WomenPantsPage extends BasePage {
     @FindBy(css = "li > .product-item-info  .price-box.price-final_price .price-wrapper > .price")
     private List<WebElement> productPrices;
     @FindBy(css = "li > .product-item-info")
-    private static List<WebElement> productItems;
-
+    private List<WebElement> productItems;
     @FindBy(css = "button.add-to-cart") // Assuming there is a button to add item to cart
     private WebElement addToCartButton;
 
@@ -46,17 +45,6 @@ public class WomenPantsPage extends BasePage {
     }
 
     public void selectCheapestItemAndAddToCart() {
-        //Add to the list
-//        List<Double> prices = productPrices.stream()
-//                .map(WebElement::getText)
-//                .map(priceText -> priceText.replaceAll("[^\\d.]", "")) // Remove non-numeric characters except dot
-//                .map(Double::parseDouble) // Convert to Double
-//                .collect(Collectors.toList());
-//        // Find the minimum price
-//        OptionalDouble minPrice = prices.stream()
-//                .mapToDouble(Double::doubleValue)
-//                .min();
-//        return prices;
         if (productPrices.isEmpty()) {
             throw new RuntimeException("No products found");
         }
